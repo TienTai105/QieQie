@@ -28,7 +28,7 @@ const Header = () => {
 
   return (
     <header className="bg-[#16213e] text-white px-6 py-4 flex justify-between items-center shadow-md">
-      <h1 className="text-xl font-semibold">🎬 Admin Panel</h1>
+      <h1 className="text-xl font-semibold">Admin Panel</h1>
       <div className="relative" ref={dropdownRef}>
         <button
           onClick={toggleDropdown}

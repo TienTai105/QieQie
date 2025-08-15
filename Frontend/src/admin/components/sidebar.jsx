@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {
   BarChart2,
   Film,
@@ -15,7 +16,7 @@ import {
 
 const menuItems = [
   { name: 'Dashboard', path: '/admin/dashboard', icon: <BarChart2 size={20} /> },
-  { name: 'Quản lý Phim', path: '/admin/movies', icon: <Film size={20} /> },
+  { name: 'Quản lý Phim', path: '/admin/manage-movies', icon: <Film size={20} /> },
   { name: 'Quản lý Lịch chiếu', path: '/admin/schedules', icon: <Calendar size={20} /> },
   { name: 'Quản lý Phòng chiếu', path: '/admin/rooms', icon: <Armchair size={20} /> },
   { name: 'Quản lý Người dùng', path: '/admin/users', icon: <Users size={20} /> },
@@ -34,8 +35,8 @@ const Sidebar = () => {
 
   return (
     <aside className="w-64 bg-[#1a1a2e] text-gray-200 flex flex-col">
-      <div className="text-2xl font-bold text-center py-6 border-b border-gray-700">
-        🎬 QieQie DashBoard
+      <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-300 to-yellow-500 drop-shadow-md p-4 ml-10">
+      <Link to="/">QieQie</Link>
       </div>
       <nav className="flex-1 p-4 space-y-2">
         {menuItems.map((item) => (

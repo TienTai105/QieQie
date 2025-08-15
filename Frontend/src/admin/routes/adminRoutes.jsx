@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import PrivateRoute from '../../components/PrivateRoute';
 import AdminLayout from '../AdminLayout';
 import Dashboard from '../pages/Dashboard';
+import ManageMovies from '../pages/ManageMovies';
 
 const adminRoutes = (
   <Route
@@ -13,6 +14,7 @@ const adminRoutes = (
       </PrivateRoute>
     }
   >
+    <Route path="manage-movies" element={<ManageMovies />} />
     <Route index element={<Dashboard />} />
     {/* Thêm các route khác nếu cần */}
   </Route>
