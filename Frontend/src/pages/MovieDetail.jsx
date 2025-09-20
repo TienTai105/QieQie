@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ShowtimePicker from '../components/ShowtimePicker';
@@ -93,6 +94,101 @@ const MovieDetail = () => {
         />
       )}
     </div>
+=======
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom'; // 👈 thêm useNavigate
+
+const MovieDetail = () => {
+  const { id } = useParams();
+  const navigate = useNavigate(); // 👈 tạo navigate
+
+  const [movie, setMovie] = useState(null);
+  const [showtimes, setShowtimes] = useState([]);
+  const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/movies/${id}`)
+      .then(res => res.json())
+      .then(setMovie);
+  }, [id]);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/showtimes?movieId=${id}&date=${date}`)
+      .then(res => res.json())
+      .then(setShowtimes);
+  }, [id, date]);
+
+  const handleBooking = (showtimeId) => {
+    navigate(`/booking/${id}?showtimeId=${showtimeId}`);
+     // 👈 chuyển sang trang đặt vé và truyền showtimeId
+  };
+
+  if (!movie) return <div className="text-white">Đang tải...</div>;
+
+  return (
+    <div className="bg-[#0f172a] text-white px-6 py-10 min-h-screen">
+      {/* Thông tin phim */}
+      <div className="flex flex-col md:flex-row gap-10 mb-12">
+        <img src={movie.poster} alt={movie.title} className="w-[300px] rounded-lg" />
+        <div>
+          <h1 className="text-4xl font-bold mb-4">{movie.title} ({movie.ageRestriction?.code})</h1>
+          <p><strong>Thể loại:</strong> {movie.genres?.join(', ')}</p>
+          <p><strong>Thời lượng:</strong> {movie.duration} phút</p>
+          <p><strong>Khởi chiếu:</strong> {movie.releaseDate}</p>
+          <p><strong>Đạo diễn:</strong> {movie.director || 'Đang cập nhật'}</p>
+          <p className="mt-4">{movie.description || 'Không có mô tả'}</p>
+
+          {movie.trailerUrl && (
+            <a
+              href={movie.trailerUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-6 px-4 py-2 bg-yellow-500 text-black font-semibold rounded hover:bg-yellow-600"
+            >
+              Xem Trailer
+            </a>
+          )}
+        </div>
+      </div>
+
+      {/* Chọn ngày */}
+      <div className="mb-6">
+        <label className="mr-4">Chọn ngày:</label>
+        <input
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          className="text-black px-3 py-1 rounded"
+        />
+      </div>
+
+      {/* Lịch chiếu */}
+      <div className="bg-gray-900 p-6 rounded-lg">
+        <h2 className="text-2xl font-semibold mb-4">Lịch Chiếu</h2>
+        {showtimes.length > 0 ? (
+  showtimes.map((show, idx) => (
+    <div key={idx} className="mb-6 border-b border-gray-600 pb-4">
+      <h4 className="font-semibold">{show.cinema}</h4>
+      <p>🕒 {show.time}</p>
+      <p>Địa chỉ: {show.address}</p>
+
+      {movie && movie._id && (
+        <button
+          onClick={() => handleBooking(show._id)}
+          className="bg-yellow-500 text-black px-4 py-2 rounded mt-2"
+        >
+          Đặt vé
+        </button>
+      )}
+    </div>
+  ))
+) : (
+  <p>Không có lịch chiếu cho ngày đã chọn.</p>
+)}
+
+      </div>
+    </div>
+>>>>>>> b32aa75 (update code)
   );
 };
 

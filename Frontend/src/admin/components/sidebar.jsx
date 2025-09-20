@@ -4,7 +4,10 @@ import {Link} from 'react-router-dom';
 import {
   BarChart2,
   Film,
+<<<<<<< HEAD
   Tag,
+=======
+>>>>>>> b32aa75 (update code)
   Calendar,
   Armchair,
   Users,
@@ -20,7 +23,11 @@ const menuItems = [
   { name: 'Quản lý Lịch chiếu', path: '/admin/schedules', icon: <Calendar size={20} /> },
   { name: 'Quản lý Phòng chiếu', path: '/admin/rooms', icon: <Armchair size={20} /> },
   { name: 'Quản lý Người dùng', path: '/admin/users', icon: <Users size={20} /> },
+<<<<<<< HEAD
   { name: 'Quản lý Bình luận', path: '/admin/comments', icon: <MessageCircle size={20} /> },
+=======
+  { name: 'Quản lý Contact', path: '/admin/contacts', icon: <MessageCircle size={20} /> },
+>>>>>>> b32aa75 (update code)
   { name: 'Quản lý Khuyến mãi', path: '/admin/promotions', icon: <Megaphone size={20} /> },
   { name: 'Cấu hình hệ thống', path: '/admin/settings', icon: <Settings size={20} /> },
 ];

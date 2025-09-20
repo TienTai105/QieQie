@@ -12,7 +12,11 @@ const ContactSection = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+<<<<<<< HEAD
       const res = await axios.post('http://localhost:5000/api/contacts', form);
+=======
+      await axios.post('http://localhost:5000/api/contacts', form);
+>>>>>>> b32aa75 (update code)
       setStatus('Gửi liên hệ thành công!');
       setForm({ name: '', email: '', message: '' });
     } catch (err) {
